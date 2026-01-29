@@ -1,0 +1,58 @@
+#include <cJSON.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 1028
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_cJSON_api_sequence() {
+    // step 1: Declarations / Initialize
+    cJSON *root = NULL;
+    cJSON *name_item = NULL;
+    cJSON *online_item = NULL;
+    cJSON *arr = NULL;
+    cJSON *num_item = NULL;
+    cJSON *detached_name = NULL;
+    cJSON *dup = NULL;
+    cJSON *dup_online = NULL;
+    char *printed = NULL;
+    cJSON_bool online_is_true = 0;
+    const char *device_name = "deviceA";
+
+    // step 2: Setup / Configure
+    root = cJSON_CreateObject();
+    name_item = cJSON_CreateString(device_name);
+    cJSON_AddItemToObject(root, "name", name_item);
+    online_item = cJSON_CreateTrue();
+    cJSON_AddItemToObject(root, "online", online_item);
+    arr = cJSON_CreateArray();
+    num_item = cJSON_CreateNumber(42.0);
+    cJSON_AddItemToArray(arr, num_item);
+    cJSON_AddItemToObject(root, "values", arr);
+
+    // step 3: Operate / Validate
+    detached_name = cJSON_DetachItemFromObject(root, "name");
+    cJSON_AddItemToArray(arr, detached_name);
+    dup = cJSON_Duplicate(root, 1);
+    dup_online = cJSON_GetObjectItem(dup, "online");
+    online_is_true = cJSON_IsTrue(dup_online);
+    printed = cJSON_PrintUnformatted(root);
+
+    // step 4: Cleanup
+    cJSON_free(printed);
+    cJSON_Delete(dup);
+    cJSON_Delete(root);
+
+    // API sequence test completed successfully
+    return 66;
+}

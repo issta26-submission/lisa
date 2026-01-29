@@ -1,0 +1,1 @@
+[2026-01-08 01:24:06.676135 +00:00] DEBUG [src/execution/logger.rs:296] [global] total: 500, succ: 394, syntax: 33, link: 0, execute: 73, hang: 0, fuzzer: 0, coverage: 0

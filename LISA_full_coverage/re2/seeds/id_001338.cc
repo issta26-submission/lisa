@@ -1,0 +1,63 @@
+#include <cre2.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 1338
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_cre2_api_sequence() {
+    // step 1: Declarations
+    const char pattern[] = "(foo)(bar)?";
+    const int pattern_len = (int)(sizeof(pattern) - 1);
+    const char text_buf[] = "prefix foobar suffix";
+    const int text_len = (int)(sizeof(text_buf) - 1);
+    cre2_regexp_t *re = NULL;
+    cre2_string_t strings[3];
+    cre2_range_t ranges[3];
+    cre2_string_t min_s;
+    cre2_string_t max_s;
+    int possible_ret = 0;
+    long computed_check = 0;
+
+    // step 2: Setup
+    memset(strings, 0, sizeof(strings));
+    memset(ranges, 0, sizeof(ranges));
+    min_s.data = NULL;
+    min_s.length = 0;
+    max_s.data = NULL;
+    max_s.length = 0;
+    strings[0].data = text_buf + 7;  // points to "foobar"
+    strings[0].length = 6;
+    strings[1].data = text_buf + 7;  // also point to same region for a smaller logical match
+    strings[1].length = 3;
+
+    // step 3: Configure
+    // (no explicit options used; use default behavior by passing NULL to cre2_new)
+
+    // step 4: Core operations
+    re = cre2_new(pattern, pattern_len, NULL);
+    cre2_strings_to_ranges(text_buf, ranges, strings, 2);
+
+    // step 5: Operate / Validate
+    possible_ret = cre2_possible_match_range(re, &min_s, &max_s, 32);
+    computed_check = (long)pattern_len + (long)text_len + (long)possible_ret
+                     + (long)(re != NULL) + (long)ranges[0].start + (long)ranges[0].past
+                     + (long)min_s.length + (long)max_s.length;
+    (void)computed_check;
+
+    // step 6: Cleanup
+    cre2_delete(re);
+
+    // API sequence test completed successfully
+    return 66;
+}

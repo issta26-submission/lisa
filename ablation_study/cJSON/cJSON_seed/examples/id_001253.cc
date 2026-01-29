@@ -1,0 +1,44 @@
+#include <cJSON.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 1253
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_cJSON_api_sequence() {
+    // step 1: Initialize
+    cJSON *root = cJSON_CreateObject();
+    cJSON *array = cJSON_CreateArray();
+    cJSON *str_ref = cJSON_CreateStringReference("referenced_value");
+    cJSON *plain_str = cJSON_CreateString("world");
+
+    // step 2: Configure
+    cJSON_AddItemToArray(array, str_ref);
+    cJSON_AddItemToArray(array, plain_str);
+    cJSON_AddItemToObject(root, "items", array);
+    cJSON_AddStringToObject(root, "greeting", "hello");
+    cJSON_AddBoolToObject(root, "flag", 1);
+
+    // step 3: Operate & Validate
+    cJSON *detached = cJSON_DetachItemFromObjectCaseSensitive(root, "greeting");
+    cJSON_AddItemToArray(array, detached);
+    cJSON *first_item = cJSON_GetArrayItem(array, 0);
+    char *out = cJSON_PrintUnformatted(root);
+    cJSON_free(out);
+
+    // step 4: Cleanup
+    cJSON_Delete(root);
+
+    // API sequence test completed successfully
+    return 66;
+}

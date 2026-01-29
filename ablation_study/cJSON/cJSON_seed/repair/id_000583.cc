@@ -1,0 +1,54 @@
+#include <cJSON.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 583
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_cJSON_api_sequence() {
+    // step 1: Initialize
+    cJSON *root = cJSON_CreateObject();
+    cJSON *array = cJSON_CreateArray();
+    cJSON_AddItemToObject(root, "data", array);
+    cJSON *n1 = cJSON_CreateNumber(10.0);
+    cJSON *n2 = cJSON_CreateNumber(20.0);
+    cJSON *n3 = cJSON_CreateNumber(30.0);
+    cJSON_AddItemToArray(array, n1);
+    cJSON_AddItemToArray(array, n2);
+    cJSON_AddItemToArray(array, n3);
+
+    // step 2: Configure
+    cJSON *meta = cJSON_CreateObject();
+    cJSON_AddItemToObject(root, "meta", meta);
+    cJSON_AddNumberToObject(meta, "scale", 2.5);
+    cJSON_AddNumberToObject(root, "count", 3.0);
+    cJSON_bool has_data = cJSON_HasObjectItem(root, "data");
+    cJSON *data_obj = cJSON_GetObjectItem(root, "data");
+
+    // step 3: Operate and Validate
+    cJSON *meta_cs = cJSON_GetObjectItemCaseSensitive(root, "meta");
+    cJSON *scale_item = cJSON_GetObjectItemCaseSensitive(meta_cs, "scale");
+    double scale = cJSON_GetNumberValue(scale_item);
+    cJSON *first_item = cJSON_GetArrayItem(data_obj, 0);
+    double first_val = cJSON_GetNumberValue(first_item);
+    double computed = first_val * scale * (1.0 + (double)has_data);
+    cJSON *insert_item = cJSON_CreateNumber(computed);
+    cJSON_InsertItemInArray(data_obj, 1, insert_item);
+    char *out = cJSON_PrintUnformatted(root);
+    cJSON_free(out);
+
+    // step 4: Cleanup
+    cJSON_Delete(root);
+    // API sequence test completed successfully
+    return 66;
+}

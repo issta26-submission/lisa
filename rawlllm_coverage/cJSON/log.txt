@@ -1,0 +1,116 @@
+
+[2026-01-24 14:44:04.546541 +00:00] INFO [src/fuzzer.rs:44] Using OpenAI handler
+[2026-01-24 14:44:04.658697 +00:00] DEBUG [src/program/gadget.rs:197] Parsed 5 typed gadgets
+[2026-01-24 14:44:05.114283 +00:00] DEBUG [src/program/gadget.rs:48] Parsed 76 function gadgets.
+.
+.
+.
+[2026-01-24 17:45:00.906944 +00:00] DEBUG [src/execution/logger.rs:296] [global] total: 132, succ: 74, syntax: 57, link: 0, execute: 1, hang: 0, fuzzer: 0, coverage: 0
+[2026-01-24 17:45:00.906961 +00:00] DEBUG [src/execution/logger.rs:307] [Asan] df: 0, uaf: 0, ho: 0, so: 0, leak: 0, segv: 0, undefined: 0, FDSan:0, others: 1
+[2026-01-24 17:45:00.906986 +00:00] DEBUG [src/fuzzer.rs:429] LLM generated 1 successful programs. Sanitize those programs!
+[2026-01-24 17:45:00.941687 +00:00] INFO [src/fuzzer.rs:468] Adding successful program 131 as an example for the next prompt.
+[2026-01-24 17:45:00.941759 +00:00] DEBUG [src/fuzzer.rs:479] Discovered 6 new API pairs in this round.
+[2026-01-24 17:45:00.941787 +00:00] DEBUG [src/feedback/schedule.rs:213] Updated energies from API pairs: 6
+[2026-01-24 17:45:00.941837 +00:00] DEBUG [src/feedback/schedule.rs:216] energies: [1.0,1.0,4.0,4.0,1.0,54.0,1.0,21.0,1.0,1.0,95.0,1.0,19.0,1.0,1.0,1.0,56.0,1.0,1.0,18.0,13.0,110.0,59.0,4.0,78.0,49.0,10.0,1.0,13.0,8.0,1.0,8.0,47.0,91.0,1.0,30.0,4.0,5.0,74.0,50.0,1.0,7.0,17.0,9.0,1.0,4.0,1.0,58.0,70.0,20.0,65.0,1.0,26.0,594.0,73.0,101.0,1.0,21.0,1.0,70.0,38.0,62.0,37.0,1.0,13.0,57.0,1.0,153.0,4.0,1.0,246.0,1.0,1.0,73.0,12.0,1.0]
+[2026-01-24 17:45:00.941897 +00:00] DEBUG [src/feedback/schedule.rs:226] sampling weights: [0.069416404,0.069416404,0.087822884,0.087822884,0.069416404,0.26114616,0.069416404,0.16243497,0.069416404,0.069416404,0.35451907,0.069416404,0.15507248,0.069416404,0.069416404,0.069416404,0.26623896,0.069416404,0.069416404,0.15129456,0.13125816,0.38441765,0.27374828,0.087822884,0.31824303,0.24808584,0.11809482,0.069416404,0.13125816,0.10869371,0.069416404,0.10869371,0.2427201,0.3462333,0.069416404,0.19296795,0.087822884,0.09335592,0.30926546,0.25073734,0.069416404,0.103765145,0.14744681,0.11346501,0.069416404,0.087822884,0.069416404,0.27126196,0.3000945,0.15878473,0.28833598,0.069416404,0.17986417,1.0,0.3069914,0.36669075,0.069416404,0.16243497,0.069416404,0.3000945,0.21741305,0.28111088,0.214469,0.069416404,0.13125816,0.26875898,0.069416404,0.46208814,0.087822884,0.069416404,0.60418993,0.069416404,0.069416404,0.3069914,0.12698093,0.069416404]
+[2026-01-24 17:45:00.941914 +00:00] INFO [src/feedback/schedule.rs:269] random assemble new prompt combination with their engies.
+[2026-01-24 17:45:00.941952 +00:00] INFO [src/feedback/schedule.rs:280] choose api: cJSON_CreateBool energy: 21
+[2026-01-24 17:45:00.941974 +00:00] INFO [src/feedback/schedule.rs:280] choose api: cJSON_CreateTrue energy: 37
+[2026-01-24 17:45:00.941993 +00:00] INFO [src/feedback/schedule.rs:280] choose api: cJSON_AddBoolToObject energy: 5
+[2026-01-24 17:45:00.942012 +00:00] INFO [src/feedback/schedule.rs:280] choose api: cJSON_CreateNumber energy: 110
+[2026-01-24 17:45:00.942051 +00:00] INFO [src/request/prompt.rs:145] set combination: cJSON *cJSON_CreateBool(cJSON_bool boolean),
+    cJSON *cJSON_CreateTrue(),
+    cJSON *cJSON_AddBoolToObject(cJSON *const object, const char *const name, const cJSON_bool boolean),
+    cJSON *cJSON_CreateNumber(double num)
+[2026-01-24 17:45:00.942803 +00:00] INFO [src/fuzzer.rs:491] [Mutate Loop]: loop: 74, quiet_round: 0, discovered_api_pairs: 1004
+[2026-01-24 17:45:00.942831 +00:00] INFO [src/fuzzer.rs:389] Time out is reached. Stopping seed generation.
+[2026-01-24 17:45:00.943034 +00:00] INFO [src/fuzzer.rs:506] Fuzzing loop finished. Starting minimization...
+[2026-01-24 17:45:00.943052 +00:00] INFO [src/fuzzer.rs:514] Minimizing corpus by unique API pairs...
+[2026-01-24 17:45:01.076863 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000058.cc"
+[2026-01-24 17:45:01.077000 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000019.cc"
+[2026-01-24 17:45:01.077095 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000037.cc"
+[2026-01-24 17:45:01.077171 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000097.cc"
+[2026-01-24 17:45:01.077249 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000118.cc"
+[2026-01-24 17:45:01.077324 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000030.cc"
+[2026-01-24 17:45:01.077403 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000056.cc"
+[2026-01-24 17:45:01.077484 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000011.cc"
+[2026-01-24 17:45:01.077633 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000067.cc"
+[2026-01-24 17:45:01.077743 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000015.cc"
+[2026-01-24 17:45:01.077824 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000041.cc"
+[2026-01-24 17:45:01.077900 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000099.cc"
+[2026-01-24 17:45:01.077978 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000077.cc"
+[2026-01-24 17:45:01.078051 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000078.cc"
+[2026-01-24 17:45:01.078125 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000130.cc"
+[2026-01-24 17:45:01.078203 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000048.cc"
+[2026-01-24 17:45:01.078282 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000060.cc"
+[2026-01-24 17:45:01.078359 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000094.cc"
+[2026-01-24 17:45:01.078434 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000046.cc"
+[2026-01-24 17:45:01.078514 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000064.cc"
+[2026-01-24 17:45:01.078621 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000083.cc"
+[2026-01-24 17:45:01.078698 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000103.cc"
+[2026-01-24 17:45:01.078770 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000111.cc"
+[2026-01-24 17:45:01.078840 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000114.cc"
+[2026-01-24 17:45:01.078911 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000000.cc"
+[2026-01-24 17:45:01.078983 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000028.cc"
+[2026-01-24 17:45:01.079127 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000076.cc"
+[2026-01-24 17:45:01.079293 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000049.cc"
+[2026-01-24 17:45:01.079431 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000002.cc"
+[2026-01-24 17:45:01.079512 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000070.cc"
+[2026-01-24 17:45:01.079586 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000109.cc"
+[2026-01-24 17:45:01.079659 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000005.cc"
+[2026-01-24 17:45:01.079734 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000024.cc"
+[2026-01-24 17:45:01.079815 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000055.cc"
+[2026-01-24 17:45:01.079888 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000084.cc"
+[2026-01-24 17:45:01.079961 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000102.cc"
+[2026-01-24 17:45:01.080035 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000057.cc"
+[2026-01-24 17:45:01.080107 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000059.cc"
+[2026-01-24 17:45:01.080179 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000072.cc"
+[2026-01-24 17:45:01.080252 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000088.cc"
+[2026-01-24 17:45:01.080322 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000095.cc"
+[2026-01-24 17:45:01.080393 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000131.cc"
+[2026-01-24 17:45:01.080517 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000013.cc"
+[2026-01-24 17:45:01.080639 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000018.cc"
+[2026-01-24 17:45:01.080809 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000031.cc"
+[2026-01-24 17:45:01.080895 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000042.cc"
+[2026-01-24 17:45:01.080969 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000054.cc"
+[2026-01-24 17:45:01.081042 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000068.cc"
+[2026-01-24 17:45:01.081114 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000091.cc"
+[2026-01-24 17:45:01.081188 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000107.cc"
+[2026-01-24 17:45:01.081258 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000113.cc"
+[2026-01-24 17:45:01.081332 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000039.cc"
+[2026-01-24 17:45:01.081404 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000062.cc"
+[2026-01-24 17:45:01.081479 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000089.cc"
+[2026-01-24 17:45:01.081551 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000123.cc"
+[2026-01-24 17:45:01.081624 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000012.cc"
+[2026-01-24 17:45:01.081698 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000038.cc"
+[2026-01-24 17:45:01.081773 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000043.cc"
+[2026-01-24 17:45:01.081897 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000119.cc"
+[2026-01-24 17:45:01.082009 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000105.cc"
+[2026-01-24 17:45:01.082088 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000106.cc"
+[2026-01-24 17:45:01.082173 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000124.cc"
+[2026-01-24 17:45:01.082268 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000026.cc"
+[2026-01-24 17:45:01.082369 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000032.cc"
+[2026-01-24 17:45:01.082442 +00:00] INFO [src/minimize.rs:78] Kept unique API seed: "/root/CGNTG/output/cJSON/seeds/id_000085.cc"
+[2026-01-24 17:45:01.082466 +00:00] INFO [src/minimize.rs:81] Minimized seeds by API pairs. Kept 65 seeds covering 416 unique pairs.
+[2026-01-24 17:45:01.082513 +00:00] INFO [src/fuzzer.rs:521] Minimization complete!
+[2026-01-24 17:45:01.082561 +00:00] INFO [src/fuzzer.rs:535] Config: Config {
+    generation_mode: ApiCombination,
+    target: "cJSON",
+    n_sample: 1,
+    temperature: 1.0,
+    disable_power_schedule: false,
+    fuzz_round_succ: 1,
+    fuzz_converge_round: 10,
+    cores: 128,
+    max_cores: 0,
+    exponent_branch: false,
+    recheck: true,
+    fuzzer_run: false,
+    handler_type: Openai,
+    seed_gen_timeout: Some(
+        180,
+    ),
+    quiet_round: 3,
+    num_new_pairs: 3,
+    enable_cot: false,
+}

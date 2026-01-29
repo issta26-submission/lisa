@@ -1,0 +1,45 @@
+#include <cJSON.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 1323
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_cJSON_api_sequence() {
+    // step 1: Declarations / Initialize
+    const char json[] = "{\"items\": [10, 20, 30], \"name\":\"original\"}";
+    const char *version = cJSON_Version();
+    const char *parse_end = NULL;
+    cJSON *root = cJSON_ParseWithLengthOpts(json, (size_t)(sizeof(json) - 1), &parse_end, 1);
+    cJSON *items = cJSON_GetObjectItem(root, "items");
+    int original_count = cJSON_GetArraySize(items);
+    cJSON *items_dup = cJSON_Duplicate(items, 1);
+
+    // step 2: Setup / Configure
+    cJSON_AddStringToObject(root, "version", version);
+    cJSON_AddStringToObject(root, "test_source", "api_sequence");
+    cJSON_AddItemToObject(root, "items_duplicate", items_dup);
+
+    // step 3: Operate / Validate
+    cJSON_bool equal_arrays = cJSON_Compare(items, items_dup, 1);
+    cJSON_AddStringToObject(root, "items_equal", equal_arrays ? "true" : "false");
+    int duplicate_count = cJSON_GetArraySize(items_dup);
+    (void)original_count;
+    (void)duplicate_count;
+    (void)equal_arrays;
+
+    // step 4: Cleanup
+    cJSON_Delete(root);
+    // API sequence test completed successfully
+    return 66;
+}

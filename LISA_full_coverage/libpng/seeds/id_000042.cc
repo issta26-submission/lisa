@@ -1,0 +1,46 @@
+#include <png.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 42
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_libpng_api_sequence() {
+    // step 1: Declarations / Initialize
+    png_structrp png_ptr = (png_structrp)NULL;
+    png_inforp info_ptr = png_create_info_struct((png_const_structrp)png_ptr);
+    png_const_charp ver = png_get_libpng_ver((png_const_structrp)png_ptr);
+    png_const_charp copy = png_get_copyright((png_const_structrp)png_ptr);
+
+    // step 2: Configure
+    png_set_progressive_read_fn(png_ptr, (png_voidp)ver, (png_progressive_info_ptr)NULL, (png_progressive_row_ptr)NULL, (png_progressive_end_ptr)NULL);
+    png_uint_32 width = (png_uint_32)64;
+    png_uint_32 height = (png_uint_32)32;
+    png_set_IHDR((png_const_structrp)png_ptr, info_ptr, width, height, 8, 2, 0, 0, 0);
+
+    // step 3: Operate / Query state
+    png_uint_32 queried_height = png_get_image_height((png_const_structrp)png_ptr, (png_const_inforp)info_ptr);
+    size_t rowbytes = png_get_rowbytes((png_const_structrp)png_ptr, (png_const_inforp)info_ptr);
+    (void)queried_height;
+    (void)rowbytes;
+
+    // step 4: Validate / Cleanup
+    // create non-restrict concrete pointers to avoid restrict-qualifier mismatch
+    png_struct *png_ptr_nonrestrict = (png_struct *)png_ptr;
+    png_info  *info_ptr_nonrestrict = (png_info  *)info_ptr;
+    png_destroy_read_struct(&png_ptr_nonrestrict, &info_ptr_nonrestrict, (png_infopp)NULL);
+    (void)ver;
+    (void)copy;
+    // API sequence test completed successfully
+    return 66;
+}

@@ -1,0 +1,1 @@
+[global] total: 830, succ: 818, syntax: 4, link: 0, execute: 8, hang: 0, fuzzer: 0, coverage: 0

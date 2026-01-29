@@ -1,0 +1,62 @@
+#include <zlib.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fcntl.h>
+//<ID> 78
+//<Prompt> []
+/*<Combination>: [
+*/
+//<score> 0, nr_unique_branch: 0
+//<Quality> {"density":0,"unique_branches":{},"library_calls":[],"critical_calls":[],"visited":0}
+/**/
+int test_zlib_api_sequence() {
+    // step 1: Declarations
+    z_stream strm;
+    Bytef input_buf[] = "Example payload to compress and then inflate, and finally write the inflated data to a .gz file.";
+    uInt input_len = (uInt)(sizeof(input_buf) - 1);
+    Bytef comp_buf[1024];
+    Bytef decomp_buf[1024];
+    uLongf comp_len = (uLongf)sizeof(comp_buf);
+    gzFile gzf;
+    const char * ver;
+    int ret_compress;
+    int ret_inflate_init;
+    int ret_inflate;
+    int ret_inflate_end;
+    int bytes_written;
+
+    // step 2: Setup (compress source and prepare inflate stream)
+    memset(&strm, 0, sizeof(strm));
+    ver = zlibVersion();
+    ret_compress = compress(comp_buf, &comp_len, input_buf, (uLong)input_len);
+
+    // step 3: Core operations (initialize inflate, perform inflate, write output to gz)
+    ret_inflate_init = inflateInit_(&strm, ver, (int)sizeof(z_stream));
+    strm.next_in = comp_buf;
+    strm.avail_in = (uInt)comp_len;
+    strm.next_out = decomp_buf;
+    strm.avail_out = (uInt)sizeof(decomp_buf);
+    ret_inflate = inflate(&strm, 0);
+    gzf = gzopen("test_zlib_api_sequence_output.tmp.gz", "wb");
+    bytes_written = gzwrite(gzf, decomp_buf, (unsigned int)strm.total_out);
+
+    // step 4: Cleanup (end inflate and close gz file)
+    ret_inflate_end = inflateEnd(&strm);
+    gzclose(gzf);
+
+    (void)ret_compress;
+    (void)ret_inflate_init;
+    (void)ret_inflate;
+    (void)ret_inflate_end;
+    (void)bytes_written;
+    (void)ver;
+
+    // API sequence test completed successfully
+    return 66;
+}

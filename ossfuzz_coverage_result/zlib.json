@@ -1,0 +1,12 @@
+{"merged": {
+    "branch": "current",
+    "lines_covered": 3354,
+    "lines_total": 5082,
+    "lines_percent": 65.99763872491145,
+    "functions_covered": 118,
+    "functions_total": 174,
+    "functions_percent": 67.81609195402298,
+    "branches_covered": 1599,
+    "branches_total": 3028,
+    "branches_percent": 52.807133421400266
+  }}
